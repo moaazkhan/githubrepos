@@ -32,5 +32,6 @@
         android:layout_alignParentStart="true"
         android:layout_marginTop="32dp"
         android:layout_marginBottom="35dp"
-        android:layout_alignParentEnd="false" />
+        android:layout_alignParentEnd="false"
+        android:text="Hello Bitch" />
 </RelativeLayout>
