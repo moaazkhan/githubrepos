@@ -9,7 +9,7 @@ public class APIClient {
     private static AsyncHttpClient client = new AsyncHttpClient();
 
     public static void get(String url, RequestParams params, AsyncHttpResponseHandler responseHandler) {
-        // client.addHeader("User-Agent", "FUCK YOU");
+        client.addHeader("User-Agent", "FUCK YOU");
         client.get(getAbsoluteUrl(url), params, responseHandler);
     }
 
