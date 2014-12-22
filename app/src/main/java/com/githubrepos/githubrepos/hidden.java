@@ -2,8 +2,8 @@ package com.githubrepos.githubrepos;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.text.TextUtils;
-import android.widget.TextView;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 
 import com.loopj.android.http.JsonHttpResponseHandler;
 
@@ -13,14 +13,21 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 
 public class hidden extends Activity {
-    ArrayList<String> mylist = new ArrayList<String>();
+
+static    ArrayList<String> mylist = new ArrayList<String>();
+
+    static ArrayAdapter<String> listAdapter ;
+    ListView listView ;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_hidden);
+
 
 
         Bundle extras = getIntent().getExtras();
@@ -32,11 +39,33 @@ public class hidden extends Activity {
                 // GET doesnt need params
                 // BUT IT DOES NEED A PROPER PATH
 
-                final TextView ans = (TextView) findViewById(R.id.textView1);
+
 
                 @Override
                 public void onStart() {
-                    ans.setText("Processing mofo");
+                        //ans.setText("Processing");
+
+                    listView = (ListView) findViewById(R.id.list);
+
+
+
+
+                    // Defined Array values to show in ListView
+                    String[] values = new String[] { "Processing", "Hello"
+
+                    };
+
+                    ArrayList<String> planetList = new ArrayList<String>();
+                    planetList.addAll( Arrays.asList(values) );
+                    listAdapter = new ArrayAdapter<String>(hidden.this, R.layout.simplerow, planetList);
+                    listView.setAdapter(listAdapter);
+
+
+
+
+
+
+
                 }
 
                 @Override
@@ -64,22 +93,50 @@ public class hidden extends Activity {
 
 
                     }
-                    String x = TextUtils.join("\n", mylist);
 
-                    ans.setText(x);
 
-                    mylist = new ArrayList<String>();
+                    listView = (ListView) findViewById(R.id.list);
+
+
+
+
+                    // Defined Array values to show in ListView
+
+
+
+                    listAdapter = new ArrayAdapter<String>(hidden.this, R.layout.simplerow, mylist);
+                    listView.setAdapter(listAdapter);
+
+
                 }
 
                 @Override
                 //  public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
                 public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject error) {
-                    ans.setText("Error:\n\n" + error);
+                    //ans.setText("Error:\n\n" + error);
+
+
+                    listView = (ListView) findViewById(R.id.list);
+
+
+
+
+                    // Defined Array values to show in ListView
+                    String[] values = new String[] { "Error", error.toString()
+
+                    };
+
+                    ArrayList<String> planetList = new ArrayList<String>();
+                    planetList.addAll( Arrays.asList(values) );
+                    listAdapter = new ArrayAdapter<String>(hidden.this, R.layout.simplerow, planetList);
+                    listView.setAdapter(listAdapter);
 
 
                 }
 
             });
+
+
         }
     }
 

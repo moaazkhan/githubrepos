@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.EditText;
-import android.widget.TextView;
 
 import java.util.ArrayList;
 
@@ -23,7 +22,7 @@ public class MainActivity extends Activity implements OnClickListener{
         button.setOnClickListener(this);
 
         final EditText edit = (EditText) findViewById(R.id.editText);
-        final TextView ans = (TextView) findViewById(R.id.textView1);
+      //  final TextView ans = (TextView) findViewById(R.id.textView1);
         final String owner;
 
         }

@@ -4,10 +4,12 @@
     android:layout_height="match_parent" android:id="@+id/hiddenLayout"
     android:weightSum="1"
     android:background="#ffff6c31">
-    <TextView android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="This is a Text View" android:layout_height="wrap_content"
-        android:id="@+id/textView1" android:layout_width="match_parent"
-        android:layout_weight="0.25" />
 
+
+    <ListView
+        android:id="@+id/list"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent">
+    </ListView>
 
 </LinearLayout>
