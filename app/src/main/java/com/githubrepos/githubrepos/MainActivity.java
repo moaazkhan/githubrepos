@@ -21,8 +21,11 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 
 public class MainActivity extends Activity implements OnClickListener{
-   static int n=0;
-    ArrayList<String> mylist = new ArrayList<String>();
+   static int stargazers_count=0;
+    static int watchers=0;
+  static   String name = null;
+
+   // ArrayList<String> reponame = new ArrayList<String>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,17 +39,20 @@ public class MainActivity extends Activity implements OnClickListener{
         findViewById(R.id.marker_progress).setVisibility(View.GONE);
 
 
+
         }
 
 
-
-            public void onClick(View view) {
+    public void onClick(View view) {
                 findViewById(R.id.marker_progress).setVisibility(View.VISIBLE);
                 hideKeyboard();
                     final TextView ans = (TextView) findViewById(R.id.textView1);
                         final EditText edit = (EditText) findViewById(R.id.editText);
                         String a = edit.getText().toString();
-                        String path = "/users/" + a + "/repos";
+
+                         RepoData.path = "/users/" + a + "/repos";
+
+                            RepoData.username = a;
 
 
 
@@ -54,9 +60,10 @@ public class MainActivity extends Activity implements OnClickListener{
 
 
 
-                APIClient.get(path, null, new JsonHttpResponseHandler() {
+
+                APIClient.get(RepoData.path, null, new JsonHttpResponseHandler() {
                     // GET doesnt need params
-                    // BUT IT DOES NEED A PROPER PATH
+                    // BUT IT DOES NEED A PROPER RepoData.path
 
 
 
@@ -72,6 +79,10 @@ public class MainActivity extends Activity implements OnClickListener{
                         // 'JSONArray response' because it will be an array of repos
                         findViewById(R.id.marker_progress).setVisibility(View.GONE);
 
+                        RepoData.reponame = new ArrayList<String>();
+                        RepoData.repoStars= new ArrayList<String>();
+                        RepoData.repoWatchers= new ArrayList<String>();
+
                         for (int i = 0; i < response.length(); i++) {
                             JSONObject obj = null;
                             try {
@@ -79,15 +90,13 @@ public class MainActivity extends Activity implements OnClickListener{
                             } catch (JSONException e) {
                                 e.printStackTrace();
                             }
-                            String name = null;
+
                             try {
                                 name = obj.getString("name");
                             } catch (JSONException e) {
                                 e.printStackTrace();
                             }
-
-
-                            mylist.add(name); //this adds an element to the list.
+                            RepoData.reponame.add(name);
 
 
 
@@ -95,10 +104,77 @@ public class MainActivity extends Activity implements OnClickListener{
 
                         }
 
-                        Intent i = new Intent(getApplicationContext(), hidden.class);
-                        i.putExtra("new_variable_name",mylist);
+                        for (int i=0; i<3;i++){
+
+
+                        }
+
+
+
+                            //this adds an element to the list.
+
+                        for (int i = 0; i < response.length(); i++) {
+                            JSONObject obj1 = null;
+                            try {
+                                obj1 = response.getJSONObject(i);
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+
+                            try {
+                                stargazers_count = obj1.getInt("stargazers_count");
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+
+
+                            String x;
+
+                            x= String.valueOf(stargazers_count);
+
+
+                            RepoData.repoStars.add(x);
+                        }
+
+
+
+                        for (int i = 0; i < response.length(); i++) {
+                            JSONObject obj2 = null;
+                            try {
+                                obj2 = response.getJSONObject(i);
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+
+                            try {
+                                watchers = obj2.getInt("watchers");
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+
+
+                            String x;
+
+                            x= String.valueOf(watchers);
+
+
+                            RepoData.repoWatchers.add(x);
+                        }
+
+
+                       // ans.setText(RepoData.repoStars.toString());
+
+
+
+
+
+                      Intent i = new Intent(getApplicationContext(), hidden.class);
+                 //
+
+
                         startActivity(i);
-                        mylist.clear();
+
+
 
 
                     }
