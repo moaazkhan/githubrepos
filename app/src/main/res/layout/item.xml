@@ -17,13 +17,13 @@
             android:layout_height="wrap_content" >
 
             <TextView
-                android:id="@+id/reponame1"
+                android:id="@+id/repoText"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
                 android:textColor="@color/genre"
                 android:textSize="15sp"
-                >
+                android:text="Repo name here">
             </TextView>
 
 
@@ -34,25 +34,27 @@
             android:layout_height="match_parent"
             android:orientation="horizontal">
         <TextView
-            android:id="@+id/forks1"
+            android:id="@+id/forkText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
             android:textColor="@color/year"
             android:textSize="13sp"
             android:layout_weight="1"
-            android:layout_marginLeft="50dp">
+            android:layout_marginLeft="50dp"
+            android:text="No. of Forks">
         </TextView>
 
         <TextView
-            android:id="@+id/stars1"
+            android:id="@+id/starText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
             android:textColor="@color/year"
             android:textSize="13sp"
             android:layout_weight="1"
-            android:layout_marginRight="50dp">
+            android:layout_marginRight="50dp"
+            android:text="No. of stars">
         </TextView>
         </LinearLayout>
 

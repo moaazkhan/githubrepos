@@ -38,9 +38,38 @@ public class MainActivity extends Activity implements OnClickListener{
 
         findViewById(R.id.marker_progress).setVisibility(View.GONE);
 
+          // if you creata toast you do it like this
+       // Toast.makeText(context, message, duration).show();
+
+       // context is almost always the activity which started that operation,
+         //       so in most cases you need to tell the action which activity called it
+           //     you can give context in the form of both Activity class and Context class
+
+             //   in the above case, you can do both:
+
+//                Toast.makeText(this, "message", Toast.LENGTH_SHORT).show();
+  //      Toast.makeText(this, "message", Toast.LENGTH_SHORT).show();
+    //    Toast.makeText(MainActivity.this, "message", Toast.LENGTH_SHORT).show();
+      //  Toast.makeText(getApplicationContext(), "message", Toast.LENGTH_SHORT).show();
+
+        // all three are correct.
+        // 'this' is equal to 'MAinActivity.this'
+        // this represents the current activity (mostly)
+        // when in any class, you call 'this', to represent the current instance of the class as a whole, in this case the class is Activity is liye you can send it as a context
+        //  so when you call a function from within the same class,
+        // for example if i call onClickView(someview), it is the same as this.onClickView
+
+        // acha, now each activity has a little piece of information called context, which can be called by th efunction getApplicationContext() in an activity
+        //sometimes functions need context sometimes they need the reference oof the whole activity
+
+        // itni baat samajh aa gai?
+
+        //delete these lines lates
 
 
-        }
+
+
+    }
 
 
     public void onClick(View view) {
@@ -62,8 +91,6 @@ public class MainActivity extends Activity implements OnClickListener{
 
 
                 APIClient.get(RepoData.path, null, new JsonHttpResponseHandler() {
-                    // GET doesnt need params
-                    // BUT IT DOES NEED A PROPER RepoData.path
 
 
 
@@ -162,19 +189,14 @@ public class MainActivity extends Activity implements OnClickListener{
                         }
 
 
-                       // ans.setText(RepoData.repoStars.toString());
+
 
 
 
 
 
                       Intent i = new Intent(getApplicationContext(), hidden.class);
-                 //
-
-
-                        startActivity(i);
-
-
+                      startActivity(i);
 
 
                     }

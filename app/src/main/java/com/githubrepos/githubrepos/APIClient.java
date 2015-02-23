@@ -9,11 +9,11 @@ public class APIClient {
     private static AsyncHttpClient client = new AsyncHttpClient();
 
     public static void get(String url, RequestParams params, AsyncHttpResponseHandler responseHandler) {
-        client.addHeader("User-Agent", "FUCK YOU");
-        client.get(getAbsoluteUrl(url), params, responseHandler);
+        client.addHeader("User-Agent", "hi");
+        client.get(getAbsoluteUl(url), params, responseHandler);
     }
 
-    private static String getAbsoluteUrl(String relativeUrl) {
+    private static String getAbsoluteUl(String relativeUrl) {
         return BASE_URL + relativeUrl;
     }
 }
